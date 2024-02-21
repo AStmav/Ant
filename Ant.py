@@ -1,3 +1,4 @@
+from collections import deque
 
 def digit_sum(num):
     return sum(int(digit) for digit in str(num))  # Возвращаем сумму цифр числа, преобразованного в строку
