@@ -1,14 +1,36 @@
-from collections import deque
+"""
+<Назначение модуля>
+"""
 
-def digit_sum(num):
-    return sum(int(digit) for digit in str(num))  # Возвращаем сумму цифр числа, преобразованного в строку
+# TODO(Vlad): В названиях файлов только маленькие буквы. Посмотри PEP 8.
 
-def is_valid(x, y):
-       return digit_sum(x) + digit_sum(y) <= 25  # Проверяем, что сумма цифр координат X и Y не превышает 25
+import collections 
+
+
+def digit_sum(num: int) -> int:
+    """
+    Возвращаем сумму цифр числа, преобразованного в строку
+
+    :param num: исходное число для преобразования
+    :return: сумма цифр числа, преобразованного в строку
+    """
+    digits = [int(char) for char in str(num)]
+    return sum(digits)
+
+
+def is_valid(x: int, y: int, max_limit: int = 25) -> bool:
+    """
+    Проверяем, что сумма цифр координат X и Y не превышает заданный предел
+
+    :param blabla
+    :return blabla
+    """
+    coord_sum = digit_sum(x) + digit_sum(y)
+    return coord_sum <= 25  
 
 def count_visited_cells(start_x, start_y):
     visited = set()  # Множество для хранения посещенных клеток
-    cells = deque([(start_x, start_y)])  # Очередь для обхода клеток
+    cells = collections.deque([(start_x, start_y)])  # Очередь для обхода клеток
     count = 0  # Счетчик посещенных клеток
 
     while cells:  # Пока очередь не пуста
@@ -21,7 +43,6 @@ def count_visited_cells(start_x, start_y):
                 new_x, new_y = x + dx, y + dy  # Вычисляем новые координаты
                 if is_valid(new_x, new_y):  # Если клетка доступна
                     cells.append((new_x, new_y))  # Добавляем новую клетку в очередь
-
     return count
 
 start_x, start_y = 1000, 1000
